@@ -41,7 +41,7 @@
 <script>
 import SingleUpload from "@/components/upload/singleUpload";
 export default {
-  components: { SingleUpload },
+    components: { SingleUpload },
     data () {
       return {
         visible: false,
