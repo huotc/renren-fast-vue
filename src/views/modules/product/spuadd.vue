@@ -393,10 +393,10 @@ export default {
           { required: true, message: "请选择一个品牌", trigger: "blur" }
         ],
         decript: [
-          { required: true, message: "请上传商品详情图集", trigger: "blur" }
+          { required: false, message: "请上传商品详情图集", trigger: "blur" }
         ],
         images: [
-          { required: true, message: "请上传商品图片集", trigger: "blur" }
+          { required: false, message: "请上传商品图片集", trigger: "blur" }
         ],
         weight: [
           {
@@ -674,19 +674,26 @@ export default {
           params: this.$http.adornParams({})
         }).then(({ data }) => {
           //先对表单的baseAttrs进行初始化
-          data.data.forEach(item => {
-            let attrArray = [];
-            item.attrs.forEach(attr => {
-              attrArray.push({
-                attrId: attr.attrId,
-                attrValues: "",
-                showDesc: attr.showDesc
-              });
+          // 检查 data.data 是否存在
+          if (data.data && Array.isArray(data.data)) {
+            data.data.forEach(item => {
+              let attrArray = [];
+              // 检查 item.attrs 是否存在
+              if (item.attrs && Array.isArray(item.attrs)) {
+                item.attrs.forEach(attr => {
+                  attrArray.push({
+                    attrId: attr.attrId,
+                    attrValues: "",
+                    showDesc: attr.showDesc
+                  });
+                });
+              }
+              this.dataResp.baseAttrs.push(attrArray);
             });
-            this.dataResp.baseAttrs.push(attrArray);
-          });
+          }
           this.dataResp.steped[0] = 0;
           this.dataResp.attrGroups = data.data;
+          console.log("this.dataResp.attrGroups:", this.dataResp.attrGroups)
         });
       }
     },
