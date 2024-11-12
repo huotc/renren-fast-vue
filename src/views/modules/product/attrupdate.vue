@@ -108,9 +108,9 @@ export default {
           if (item.attrs != null) {
             item.attrs.forEach(attr => {
               let v = "";
-              if (_this.spuAttrsMap["" + attr.attrId].attrValue) {
+              if (_this.spuAttrsMap["" + attr.attrId]) {
                 v = _this.spuAttrsMap["" + attr.attrId].attrValue.split(";");
-                if (v.length == 1 && attr.valueType == 0) {
+                if (v.length == 1 && attr.valueType == 0 || attr.valueType == null) {
                   v = v[0] + "";
                 }
               }
