@@ -17,3 +17,9 @@
 
 ## 更新日志
 每个版本的详细更改都记录在[release notes](https://github.com/renrenio/renren-fast-vue/releases)中。
+
+
+
+启动不了使用:
+cnpm install 
+npm run dev
